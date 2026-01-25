@@ -1,3 +1,10 @@
+ const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav');
+
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('show');
+    });
+
 // Sélection des éléments du DOM
 const priceInput = document.getElementById("price");
 const weightInput = document.getElementById("weight");
@@ -7,6 +14,8 @@ const commissionEl = document.getElementById("commission");
 const shippingEl = document.getElementById("shipping");
 const totalEUREl = document.getElementById("totalEUR");
 const totalXAFEl = document.getElementById("totalFCFA");
+const accompteEl = document.getElementById("accompte");
+const resteEl = document.getElementById("reste");
 
 // Constantes
 const COMMISSION_RATE = 0.15;       // 15% de commission
@@ -29,6 +38,10 @@ function calculate() {
 
     // Conversion en XAF
     const totalXAF = totalEUR * EUR_TO_XAF;
+
+    // Calcul de l'accompte et du reste
+    const accompte = totalXAF * 0.8;
+    const reste = totalXAF * 0.2;
 
     // Affichage
     buyPriceEl.textContent = price.toFixed(2) + " €";

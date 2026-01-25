@@ -9,9 +9,9 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: #fff;
-    
+    color: #000000;
+    background: #f4f4f4;
+
 }
 
 .container {
@@ -20,14 +20,61 @@ body {
     margin: auto;
 }
 
+/* ----- BURGER ----- */
+.burger {
+    width: 30px;
+    height: 22px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+}
+
+.burger span {
+    display: block;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* ----- VERSION DESKTOP ----- */
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+
+
 /* Header */
 header {
-    background: #fff;
+    background: #000000c6;
     padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 6, 96, 0.607);
+    /* opacité de l’overlay */
+    z-index: 1;
+}
+.img {
+    width: 600px;
+    height: 600px;
+    background-image: url("images/WhatsApp Image 2025-11-07 à 13.18.29_91428297.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
 }
 
 .header-content {
@@ -35,14 +82,17 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 8px; /* espace entre image et texte */
+    gap: 8px;
+    /* espace entre image et texte */
 }
 
 .logo-img {
-    width: 30px;   /* taille ajustable */
+    width: 30px;
+    /* taille ajustable */
     height: auto;
 }
 
@@ -52,18 +102,19 @@ header {
     border: 2px solid black;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo .holy {
-    color:  #197c2b;
+    color: #ffffff;
 }
 
 .logo .shop {
-    color: rgb(255, 251, 0);
+    color: rgb(255, 255, 255);
 }
+
 .logo .Congo {
-    color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 nav ul {
@@ -74,19 +125,24 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #197c2b;
+    color: #3210ca;
 }
 
 /* Features */
 .features {
     padding: 50px 0;
-    background: #f9f9f9;
+    background: #202685;
 }
+#features {
+    
+  
+    padding: 40px 
+}  
 
 .section-title {
     text-align: center;
@@ -105,7 +161,7 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
@@ -120,52 +176,52 @@ nav ul li a:hover {
 
 /* Section Partenaires */
 .partners {
-  padding: 60px 20px;
-  background: #f9f9f9;
-  text-align: center;
-  overflow: hidden; 
+    padding: 60px 20px;
+    background: #f9f9f9;
+    text-align: center;
+    overflow: hidden;
 }
 
 .partners-slider {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
 
 .partners-track {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  will-change: transform;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    will-change: transform;
 }
 
 .partners-inner {
-  display: flex;
-  align-items: center;
-  gap: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .partner-logo {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 90px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 90px;
 }
 
 .partner-logo img {
-  max-width: 160px;
-  max-height: 80px;
-  object-fit: contain;
-  filter: grayscale(100%);
-  transition: transform 0.25s ease, filter 0.25s ease;
-  display: block;
+    max-width: 160px;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: transform 0.25s ease, filter 0.25s ease;
+    display: block;
 }
 
 .partner-logo img:hover {
-  filter: grayscale(0);
-  transform: scale(1.06);
+    filter: grayscale(0);
+    transform: scale(1.06);
 }
 
 /* Calculator */
@@ -180,7 +236,7 @@ nav ul li a:hover {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {
@@ -212,7 +268,7 @@ nav ul li a:hover {
 
 .result-item.total {
     font-weight: bold;
-    color: #197c2b;
+    color: #1c006c;
 }
 
 /* Process */
@@ -230,7 +286,7 @@ nav ul li a:hover {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -238,7 +294,7 @@ nav ul li a:hover {
     width: 40px;
     height: 40px;
     margin: 0 auto 15px;
-    background: #197c2b;
+    background: #1c006c;
     color: #fff;
     font-weight: bold;
     display: flex;
@@ -264,12 +320,12 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer */
 footer {
-    background: #333;
+    background: #000000;
     color: #fff;
     padding: 40px 20px;
 }
@@ -283,7 +339,7 @@ footer {
 
 .footer-section h3 {
     margin-bottom: 15px;
-    color:  rgb(255, 251, 0);
+    color: rgb(255, 255, 255);
 }
 
 .footer-links {
@@ -300,7 +356,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: #197c2b;
+    color: #2b0989;
 }
 
 footer p {
@@ -337,43 +393,38 @@ footer p {
 
 .social-link:hover {
     transform: scale(1.15);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Optionnel : couleurs spécifiques selon le réseau */
-.social-link.instagram:hover {
-    background:  rgb(255, 0, 0);
-}
-
-.social-link.tiktok:hover {
-    background: #000000;
-}
 
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh; /* pleine hauteur de l’écran */
-    background: url("images/WhatsApp\ Image\ 2025-11-07\ à\ 13.18.29_91428297.jpg") no-repeat center top/cover; /* <== changement ici */
+    height: 100vh;
+    /* pleine hauteur de l’écran */
+    background: radial-gradient(rgba(8, 0, 255, 0.689), rgb(8, 5, 103));
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     overflow: hidden;
     font-family: "Poppins", sans-serif;
     bi
 }
 
-    /* couche sombre au-dessus de l’image */
+/* couche sombre au-dessus de l’image */
 .hero .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.45); /* opacité de l’overlay */
+    background: rgba(0, 0, 0, 0.45);
+    /* opacité de l’overlay */
     z-index: 1;
-} 
+}
 
 /* contenu au-dessus de l’overlay */
 .hero .container {
@@ -399,62 +450,100 @@ footer p {
     .hero h1 {
         font-size: 2rem;
     }
+
     .hero p {
         font-size: 1rem;
     }
 }
 
- #faq {
+#faq {
     max-width: 800px;
     margin: 40px auto;
     font-family: "Poppins", sans-serif;
     color: #333;
-  }
+}
 
-  .section-title {
+.section-title {
     text-align: center;
     font-size: 2em;
     color: #111;
     margin-bottom: 20px;
-  }
+}
 
-  .faq-category {
+.faq-category {
     margin-top: 40px;
-    color: rgb(255, 0, 0);
+    color: #1c006c;
     font-size: 1.3em;
-    border-left: 4px solid rgb(255, 0, 0);
+    border-left: 4px solid #1c006c;
     padding-left: 10px;
-  }
+}
 
-  .faq-item {
+.faq-item {
     background: #f9f9f9;
     border-radius: 6px;
     margin: 10px 0;
     padding: 15px 20px;
     transition: all 0.3s ease;
     cursor: pointer;
-  }
+}
 
-  .faq-item:hover {
+.faq-item:hover {
     background: #f1f1f1;
-  }
+}
 
-  .faq-question {
+.faq-question {
     font-size: 1.1em;
     font-weight: 600;
     margin: 0;
     color: #222;
-  }
+}
 
-  .faq-answer {
+.faq-answer {
     display: none;
     margin-top: 10px;
     line-height: 1.6;
     color: #444;
-  }
+}
 
-  .faq-item.active .faq-answer {
+.faq-item.active .faq-answer {
     display: block;
-  }
+}
 
-  
+/* ----- VERSION MOBILE ----- */
+@media (max-width: 900px) {
+
+    /* On montre le burger */
+    .burger {
+        display: flex;
+    }
+
+    /* Le menu est caché au début */
+    nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        right: 10px;
+        width: 200px;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 3px 10px #ffffff;
+
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: start;
+        gap: 15px;
+    }
+
+    nav ul li a {
+        color: #1c006c;
+        text-decoration: none;
+
+    }
+
+    nav.show {
+        display: block;
+    }
+}
