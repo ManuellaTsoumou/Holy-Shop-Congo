@@ -100,3 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
         track.innerHTML += track.innerHTML;
     }
 });
+
+const overlay = document.getElementById('newsletterOverlay');
+const closeBtn = document.getElementById('closeModal');
+const form = document.getElementById('newsletterForm');
+
+// Fermer au clic sur la croix
+closeBtn.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.visibility = 'hidden'; }, 500);
+});
+
+// Fermer après avoir validé le formulaire
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Merci ! Bienvenue chez Holy Shop Congo.");
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.visibility = 'hidden'; }, 500);
+});
