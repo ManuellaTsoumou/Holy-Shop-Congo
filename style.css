@@ -1,0 +1,745 @@
+/* ==========================================================================
+   CONFIG & VARIABLES (Palette Bleu Roi Moderne)
+   ========================================================================== */
+:root {
+    --primary: #4169E1;        /* Bleu Roi */
+    --primary-dark: #002366;   /* Bleu Profond */
+    --accent: #ffd700;         /* Or (Boutons/Highlights) */
+    --congo-red: #ce1126;      /* Rouge Congo */
+    --white: #ffffff;
+    --bg-light: #f8faff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --glass: rgba(255, 255, 255, 0.85);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.12);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-light);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+img { max-width: 100%; height: auto; }
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition);
+}
+
+.main-header.scrolled {
+    background: rgba(255, 255, 255, 0.263);
+    backdrop-filter: blur(15px);
+    padding: 12px 0;
+    box-shadow: var(--shadow-soft);
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.logo-img { height: 45px; margin-right: 12px; border-radius: 8px; }
+
+.logo .holy { color: var(--primary-dark); }
+.logo .shop { color: var(--primary); }
+.logo .congo { color: var(--congo-red); }
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: black;
+    position: relative;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 2px;
+    bottom: -5px; left: 0;
+    background: black;
+    transition: var(--transition);
+}
+
+.main-nav a:hover::after { width: 100%; }
+
+/* Menu Burger */
+.burger {
+    background-color: transparent;
+    border: none;
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.burger span {
+    width: 28px; height: 3px;
+    background: black;
+    border-radius: 3px;
+    transition: var(--transition);
+}
+/* L'arrière-plan qui bloque le site */
+.newsletter-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 35, 102, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center; justify-content: center;
+    z-index: 9999;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+/* La fenêtre (Modal) */
+.newsletter-modal {
+    background: white;
+    width: 90%;
+    max-width: 850px;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+.modal-image img {
+    width: 400px; height: auto;
+    object-fit: cover;
+}
+
+.modal-content {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    font-size: 2rem; color: #ccc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: var(--congo-red); }
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.modal-form input {
+    padding: 18px;
+    border-radius: 12px;
+    border: 2px solid #eee;
+    font-size: 1rem;
+}
+
+.modal-form button {
+    background: var(--primary);
+    color: white;
+    padding: 18px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-form button:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+.spam-text { font-size: 0.8rem; color: #999; margin-top: 15px; text-align: center; }
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .newsletter-modal { grid-template-columns: 1fr; }
+    .modal-image { display: none; }
+    .modal-content { padding: 40px 25px; }
+}
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    padding: 180px 0 120px;
+
+    text-align: center;
+    
+    background: linear-gradient(-45deg, #002366, #013b05, #132b6d, #21315e);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    color: var(--white);
+    
+    display: flex;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 35px;
+    opacity: 0.9;
+}
+
+.hero-subtitle {
+    color: var(--accent);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   SERVICES (Features)
+   ========================================================================== */
+section { padding: 100px 0; }
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 60px;
+    color: var(--primary-dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 50px 40px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.feature-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-strong);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+/* ==========================================================================
+   SECTION PROCESSUS (Notre Processus)
+   ========================================================================== */
+.process-section {
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Grille des étapes */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    position: relative;
+    margin-top: 50px;
+}
+
+/* Ligne de connexion entre les étapes (visible sur desktop) */
+@media (min-width: 992px) {
+    .process-steps::before {
+        content: '';
+        position: absolute;
+        top: 45px; /* Aligné avec le milieu des cercles numérotés */
+        left: 50px;
+        right: 50px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary) 0%, #eef0f5 100%);
+        z-index: 1;
+    }
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    transition: var(--transition);
+}
+
+/* Le cercle avec le numéro */
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    color: var(--primary);
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 800;
+    box-shadow: 0 10px 20px rgba(65, 105, 225, 0.15);
+    transition: var(--transition);
+}
+
+/* Titres et textes */
+.step h3 {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.step p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- EFFETS AU SURVOL --- */
+.step:hover {
+    transform: translateY(-10px);
+}
+
+.step:hover .step-number {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 15px 30px rgba(65, 105, 225, 0.3);
+}
+
+/* Animation séquentielle pour donner vie à la page au chargement */
+.step {
+    animation: fadeInStep 0.6s ease forwards;
+    opacity: 0;
+}
+
+.step:nth-child(1) { animation-delay: 0.1s; }
+.step:nth-child(2) { animation-delay: 0.3s; }
+.step:nth-child(3) { animation-delay: 0.5s; }
+.step:nth-child(4) { animation-delay: 0.7s; }
+
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive : On empile verticalement et on ajuste la ligne */
+@media (max-width: 991px) {
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .process-steps::before {
+        display: none; /* On cache la ligne horizontale */
+    }
+    
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+/* ==========================================================================
+   SECTION CONTACTS & NUMÉROS
+   ========================================================================== */
+.contact-numbers {
+    background: var(--bg-light);
+    text-align: center;
+}
+
+.contact-intro {
+    max-width: 700px;
+    margin: -30px auto 50px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.number-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid transparent;
+}
+
+.number-card h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.number-card p, 
+.number-card .phone-link {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+/* --- STYLES SPÉCIFIQUES AUX CARTES --- */
+
+/* WhatsApp - Couleur Verte */
+.whatsapp-card {
+    border-bottom: 5px solid #25D366;
+}
+.whatsapp-card .phone-link {
+    color: #25D366;
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(37, 211, 102, 0.1);
+    border-radius: 50px;
+}
+.whatsapp-card:hover {
+    background: #25D366;
+    transform: scale(1.05);
+}
+
+/* MTN - Jaune/Jaune d'or */
+.mtn-card {
+    border-bottom: 5px solid #ffcc00;
+}
+.mtn-card:hover {
+    box-shadow: 0 15px 30px rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00;
+}
+
+/* Airtel - Rouge */
+.airtel-card {
+    border-bottom: 5px solid #ff0000;
+}
+.airtel-card:hover {
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.15);
+    border-color: #ff0000;
+}
+
+/* Effet au survol global (pour les cartes de paiement) */
+.number-card:hover:not(.whatsapp-card) {
+    transform: translateY(-10px);
+}
+
+/* Inversion texte pour WhatsApp au survol */
+.whatsapp-card:hover h3, 
+.whatsapp-card:hover .phone-link {
+    color: white;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 480px) {
+    .number-card p, 
+    .number-card .phone-link {
+        font-size: 1.2rem;
+    }
+}
+/* ==========================================================================
+   CALCULATEUR LOOK PRO
+   ========================================================================== */
+.calculator-section { background: #fff; }
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.cost-list li {
+    padding: 12px 0;
+    border-bottom: 1px dotted #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.cost-list li::before {
+    content: '✓';
+    color: var(--primary);
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.calculator-card {
+    background: var(--bg-light);
+    padding: 45px;
+    border-radius: 35px;
+    box-shadow: var(--shadow-strong);
+}
+
+.input-group { margin-bottom: 25px; }
+.input-group label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--primary-dark); }
+.input-group input {
+    width: 100%; padding: 15px; border-radius: 12px;
+    border: 2px solid #eef0f5; font-size: 1rem;
+    transition: var(--transition);
+}
+.input-group input:focus { border-color: var(--primary); outline: none; background: #fff; }
+
+.results {
+    background: var(--primary-dark);
+    color: #fff; padding: 30px; border-radius: 20px;
+}
+
+.result-item { display: flex; justify-content: space-between; margin-bottom: 12px; opacity: 0.85; }
+.total-xaf {
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 1.5rem; font-weight: 800; color: var(--accent);
+}
+
+.payment-breakdown {
+    margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+}
+
+.deposit, .balance { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; }
+.deposit h4, .balance h4 { font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; opacity: 0.7; }
+.highlight { color: var(--accent); font-weight: 700; }
+
+/* ==========================================================================
+   SECTION PARTENAIRES (Carousel Infini)
+   ========================================================================== */
+.partners-carousel {
+    background-color: var(--white);
+    padding: 60px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin: -40px auto 40px;
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+/* Conteneur du slider */
+.partners-slider {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Masques dégradés sur les côtés pour l'effet de disparition fluide */
+.partners-slider::before,
+.partners-slider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.partners-slider::before {
+    left: 0;
+    background: linear-gradient(to right, var(--white) 0%, transparent 100%);
+}
+
+.partners-slider::after {
+    right: 0;
+    background: linear-gradient(to left, var(--white) 0%, transparent 100%);
+}
+
+/* Le rail d'animation */
+.partners-track {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* Espace entre les logos */
+    width: max-content;
+    animation: infiniteScroll 40s linear infinite;
+}
+
+/* Style des logos individuels */
+.partner-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px; /* Taille uniforme */
+}
+
+.partner-logo img {
+    max-width: 100%;
+    max-height: 45px;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.5);
+    transition: var(--transition);
+}
+
+/* Effet au survol : le logo reprend ses couleurs */
+.partner-logo img:hover {
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.1);
+}
+
+/* Animation CSS native (plus performante que le JS pour ce cas précis) */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 40px)); /* Ajustement selon le gap */
+    }
+}
+
+/* Pause de l'animation au survol pour laisser l'utilisateur regarder */
+.partners-track:hover {
+    animation-play-state: paused;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .partners-track {
+        gap: 50px;
+        animation-duration: 25s; /* Un peu plus rapide sur mobile car moins de trajet */
+    }
+    
+    .partner-logo {
+        width: 100px;
+    }
+    
+    .partners-slider::before,
+    .partners-slider::after {
+        width: 60px; /* Masques plus petits sur mobile */
+    }
+}
+
+/* ==========================================================================
+   FAQ & FOOTER
+   ========================================================================== */
+.faq-container { max-width: 800px; margin: 0 auto; }
+
+details {
+    background: #fff; margin-bottom: 15px; border-radius: 15px;
+    box-shadow: var(--shadow-soft); overflow: hidden;
+}
+
+summary {
+    padding: 22px; cursor: pointer; font-weight: 700;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.social-links a img {
+   width: 24px; height: 24px; filter: grayscale(1); opacity: 0.6;
+   
+   transition: 0.3s;
+}
+.social-links a img:hover {
+   filter: none;
+   
+   opacity: 1;
+}
+
+summary::after { content: '+'; color: var(--primary); font-size: 1.5rem; }
+details[open] summary::after { content: '-'; }
+
+.main-footer {
+    background: var(--primary-dark); color: #fff; padding: 80px 0 30px;
+}
+
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; opacity: 0.6; }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 992px) {
+    .calculator-grid, .footer-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed; top: 0; right: -100%; width: 40%; height: 40vh;
+        background: rgba(255, 255, 255, 0.338); backdrop-filter: blur(15px); padding: 30px 40px; transition: 0.5s;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    }
+    .main-nav.active { right: 0; }
+    .main-nav ul { flex-direction: column; gap: 25px; }
+    .burger { display: flex; }
+    
+    .hero { padding: 140px 0 80px; }
+    .calculator-card { padding: 25px; }
+}
