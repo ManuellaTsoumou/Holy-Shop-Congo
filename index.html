@@ -1,307 +1,1233 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Holy Shop - Service d'achat et d'expédition de la France vers le Congo-Brazzaville.">
-  <title>Holy Shop - Votre partenaire e-commerce international</title>
+  <meta name="description" content="Holy Shop Congo - Service d'achat et d'expédition depuis la France vers le Congo-Brazzaville.">
+  <title>Holy Shop Congo — France vers Congo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================================
+       VARIABLES — DESIGN SYSTEM RESTRUCTURÉ
+       Séparation stricte : couleurs TXT / couleurs UI
+    ===================================================================== */
+    :root {
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="/images/Holy-shop_logo.jpg">
+      /* ══════════════════════════════════════════
+         COULEURS DE TEXTE (TXT)
+         Règle : UNIQUEMENT pour la propriété color
+         Jamais pour background, border, fill, etc.
+      ══════════════════════════════════════════ */
+
+      /* Hiérarchie sur fond BLANC / clair */
+      --txt-h1:          #16024e;   /* h1 — bleu nuit, contraste max */
+      --txt-h2:          #1c006c;   /* h2 — bleu marine profond */
+      --txt-h3:          #351983;   /* h3, titres cartes — bleu violet */
+      --txt-body:        #351983;   /* paragraphes courants */
+      --txt-secondary:   #3a5fd9;   /* texte secondaire, labels actifs */
+      --txt-muted:       #707070;   /* métadonnées, hints discrets */
+      --txt-disabled:    #a8a8b8;   /* placeholders, inactif */
+
+      /* Hiérarchie sur fond SOMBRE (modal, footer) */
+      --txt-on-dark:         #ffffff;
+      --txt-on-dark-2:       rgba(255,255,255,0.65);
+      --txt-on-dark-muted:   rgba(255,255,255,0.35);
+
+      /* Sur bouton doré */
+      --txt-on-gold:     #ffffff;
+
+      /* ══════════════════════════════════════════
+         COULEURS UI (fonds, bordures, boutons)
+         Jamais utilisées pour la propriété color
+      ══════════════════════════════════════════ */
+
+      /* Fonds clairs */
+      --bg-page:     #ffffff;
+      --bg-alt:      #f5f4fc;       /* sections alternées — bleu très pâle */
+      --bg-card:     #ffffff;
+      --bg-input:    #f0eefa;       /* fond inputs sur fond clair */
+      --bg-blue-tint: rgba(53,25,131,0.05);
+
+      /* Fonds sombres (footer, modal, hero-card) */
+      --ink:         #07080d;
+      --ink-2:       #0f1018;
+      --ink-3:       #161820;
+      --ink-4:       #1e2030;
+
+      /* Bordures sur fond clair */
+      --border:      rgba(53,25,131,0.10);
+      --border-2:    rgba(53,25,131,0.20);
+
+      /* Bordures sur fond sombre */
+      --border-dark:   rgba(255,255,255,0.08);
+      --border-dark-2: rgba(255,255,255,0.14);
+
+      /* Accent or */
+      --gold:        #c8a84b;
+      --gold-2:      #d4a93a;
+      --gold-3:      #b8902a;
+      --gold-bg:     rgba(200,168,75,0.10);
+      --gold-glow:   rgba(200,168,75,0.25);
+
+      /* Accent bleu — usage UI uniquement */
+      --blue:        #3a5fd9;
+      --blue-dark:   #001f8c;
+      --bleu:        #351983;
+      --bleu-2:      #1c006c;
+      --bleu-3:      #16024e;
+      --bleu-bg:     rgba(53,25,131,0.08);
+
+      /* Accent rouge */
+      --red:         #cc1020;
+
+      /* ── Typo ── */
+      --f-title: 'Playfair Display', Georgia, serif;
+      --f-body:  'Plus Jakarta Sans', sans-serif;
+
+      /* ── Rayons ── */
+      --r1: 8px;
+      --r2: 16px;
+      --r3: 24px;
+      --r4: 40px;
+      --rF: 999px;
+
+      /* ── Transitions ── */
+      --ease: cubic-bezier(.4,0,.2,1);
+      --t:  .28s;
+      --ts: .5s;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--bg-page);
+      color: var(--txt-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2 { font-family: var(--f-title); line-height: 1.08; letter-spacing: -.015em; }
+    h1 { font-size: clamp(2.6rem,5.5vw,4.4rem); color: var(--txt-h1); }
+    h2 { font-size: clamp(1.9rem,3.8vw,3rem);   color: var(--txt-h2); }
+    h3 { font-family: var(--f-body); font-weight:600; font-size:1rem; color: var(--txt-h3); }
+    ul { list-style:none; }
+    a  { text-decoration:none; color:inherit; transition:color var(--t) var(--ease); }
+    img { max-width:100%; height:auto; display:block; }
+
+    .container { max-width:1220px; margin:0 auto; padding:0 28px; }
+    section { padding:110px 0; }
+
+    /* ── Eyebrow ── */
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:.72rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color: var(--gold-3); margin-bottom:18px;
+    }
+    .eyebrow::before {
+      content:''; display:block; width:28px; height:1.5px;
+      background: var(--gold-3); border-radius:2px;
+    }
+
+    /* ── Boutons ── */
+    .btn {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:14px 30px; border-radius:var(--rF);
+      font-family:var(--f-body); font-weight:600; font-size:.9rem;
+      letter-spacing:.03em; cursor:pointer; border:none;
+      transition:all var(--t) var(--ease); white-space:nowrap;
+    }
+    .btn-gold {
+      background:linear-gradient(135deg, var(--gold-3), var(--gold));
+      color: var(--txt-on-gold); font-weight:700;
+      box-shadow:0 8px 28px var(--gold-glow);
+    }
+    .btn-gold:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(200,168,75,.38); filter:brightness(1.07); }
+
+    .btn-outline {
+      background:transparent;
+      color: var(--txt-h3);
+      border:1.5px solid var(--border-2);
+    }
+    .btn-outline:hover { border-color: var(--gold-3); color: var(--gold-3); background: var(--gold-bg); }
+
+    /* ── Reveal ── */
+    .rv { opacity:0; transform:translateY(26px); transition:opacity .65s var(--ease),transform .65s var(--ease); }
+    .rv.on { opacity:1; transform:none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.18s} .d3{transition-delay:.28s}
+    .d4{transition-delay:.38s} .d5{transition-delay:.5s}
+
+    /* =====================================================================
+       MODAL — fond sombre conservé
+    ===================================================================== */
+    .newsletter-overlay {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,.88); backdrop-filter:blur(14px);
+      display:flex; align-items:center; justify-content:center;
+      transition:opacity .4s, visibility .4s;
+    }
+    .newsletter-overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+
+    .newsletter-modal {
+      background: var(--ink-3); border:1px solid var(--border-dark-2);
+      width:92%; max-width:800px; border-radius:var(--r4);
+      display:grid; grid-template-columns:1fr 1.25fr;
+      overflow:hidden; position:relative;
+      box-shadow:0 40px 80px rgba(0,0,0,.6);
+      transition:transform .4s var(--ease);
+    }
+    .newsletter-overlay.hidden .newsletter-modal { transform:scale(.95); }
+
+    .modal-left {
+      background:linear-gradient(150deg, var(--blue-dark) 0%, var(--ink) 100%);
+      padding:52px 36px; display:flex; flex-direction:column;
+      justify-content:space-between; position:relative; overflow:hidden;
+    }
+    .modal-left::after {
+      content:''; position:absolute; bottom:-70px; right:-70px;
+      width:240px; height:240px; border-radius:50%;
+      background:radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+    }
+    .modal-left::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,transparent, var(--gold),transparent);
+    }
+    .modal-left h2 { color: var(--txt-on-dark); font-size:1.9rem; position:relative; z-index:1; }
+    .modal-left h2 span { color: var(--gold-2); font-style:italic; }
+    .modal-left p  { font-size:.85rem; color: var(--txt-on-dark-muted); margin-top:12px; position:relative; z-index:1; }
+
+    .modal-right { padding:48px 40px; display:flex; flex-direction:column; justify-content:center; background:#ffffff; }
+    .modal-right h3 { font-family:var(--f-title); font-size:1.4rem; color: var(--txt-h2); margin-bottom:6px; }
+    .modal-right > p { font-size:.87rem; color: var(--txt-body); margin-bottom:26px; line-height:1.65; }
+
+    .close-modal {
+      position:absolute; top:14px; right:14px;
+      width:32px; height:32px; border-radius:50%;
+      background: var(--ink-4); border:1px solid var(--border-dark-2);
+      color: var(--txt-on-dark-2); font-size:1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:all var(--t) var(--ease); z-index:10;
+    }
+    .close-modal:hover { background: var(--red); color: var(--txt-on-dark); border-color: var(--red); }
+
+    .modal-form { display:flex; flex-direction:column; gap:11px; }
+    .modal-form input {
+      padding:13px 16px; border-radius:var(--r2);
+      border:1px solid var(--border-2); background: var(--bg-input);
+      font-family:var(--f-body); font-size:.93rem; color: var(--txt-body);
+      outline:none; transition:border-color var(--t);
+    }
+    .modal-form input:focus { border-color: var(--gold); box-shadow:0 0 0 3px var(--gold-bg); }
+    .modal-form input::placeholder { color: var(--txt-disabled); }
+    .spam-text { font-size:.73rem; color: var(--txt-muted); text-align:center; margin-top:9px; }
+
+    @media(max-width:620px){
+      .newsletter-modal { grid-template-columns:1fr; }
+      .modal-left { padding:32px 26px; min-height:150px; }
+      .modal-right { padding:32px 26px; }
+    }
+
+    /* =====================================================================
+       HEADER
+    ===================================================================== */
+    .main-header {
+      position:fixed; top:0; width:100%; z-index:1000;
+      padding:22px 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom:1px solid var(--border);
+      transition:padding var(--ts) var(--ease), box-shadow var(--ts);
+    }
+    .main-header.scrolled {
+      padding:13px 0;
+      box-shadow: 0 2px 20px rgba(53,25,131,0.08);
+    }
+    .header-wrapper { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+
+    .logo { display:flex; align-items:center; gap:9px; font-family:var(--f-title); font-weight:700; font-size:1.2rem; }
+    .logo-img { height:36px; border-radius:var(--r1); }
+    .logo .holy  { color: var(--bleu-2); }
+    .logo .shop  { color: var(--bleu-2); }
+    .logo .congo { color: var(--bleu-2); }
+
+    .main-nav ul { display:flex; align-items:center; gap:2px; }
+    .main-nav a {
+      font-size:.86rem; font-weight:500;
+      color: var(--txt-secondary);
+      padding:7px 14px; border-radius:var(--rF);
+      transition:all var(--t) var(--ease);
+    }
+    .main-nav a:hover,
+    .main-nav a.active { color: var(--txt-h1); background: var(--bleu-bg); }
+
+    .main-nav .nav-cta {
+      background:linear-gradient(135deg, var(--gold-3), var(--gold));
+      color: var(--txt-on-gold); font-weight:700; padding:8px 20px;
+    }
+    .main-nav .nav-cta:hover { transform:translateY(-1px); box-shadow:0 8px 20px var(--gold-glow); }
+
+    .burger {
+      display:none; flex-direction:column; gap:5px;
+      background:transparent; border:none; cursor:pointer; z-index:1001; padding:4px;
+    }
+    .burger span { display:block; width:22px; height:2px; background: var(--txt-h1); border-radius:2px; transition:all var(--t) var(--ease); transform-origin:center; }
+    .burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    /* =====================================================================
+       HERO — fond blanc avec grille bleue subtile
+    ===================================================================== */
+    .hero {
+      min-height:100vh; display:flex; align-items:center;
+      padding:150px 0 100px; position:relative; overflow:hidden;
+      background: var(--bg-page);
+    }
+
+    .hero::before {
+      content:''; position:absolute; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 65% 50% at 75% 40%, rgba(58,95,217,.06) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 10% 75%, rgba(204,16,32,.03) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 50% -5%, rgba(200,168,75,.04) 0%, transparent 60%);
+    }
+
+    .hero::after {
+      content:''; position:absolute; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(53,25,131,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53,25,131,.025) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(ellipse 75% 75% at center, black 20%, transparent 100%);
+    }
+
+    .hero .container { position:relative; z-index:1; display:grid; grid-template-columns:1fr .85fr; gap:72px; align-items:center; }
+
+    .hero h1 { color: var(--txt-h1); margin:16px 0 22px; }
+    .hero h1 em { font-style:italic; color: var(--gold-2); }
+
+    .hero-description { font-size:1.05rem; color: var(--txt-body); font-weight:300; line-height:1.8; max-width:500px; margin-bottom:38px; }
+
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+    .hero-stats {
+      display:flex; gap:40px; flex-wrap:wrap;
+      margin-top:52px; padding-top:40px;
+      border-top:1px solid var(--border);
+    }
+    .stat-val { font-family:var(--f-title); font-size:2.2rem; color: var(--gold-3); line-height:1; margin-bottom:4px; }
+    .stat-lbl { font-size:.75rem; color: var(--txt-secondary); text-transform:uppercase; letter-spacing:.09em; }
+
+    .hero-content .eyebrow  { opacity:0; animation:upIn .7s .1s forwards; }
+    .hero-content h1        { opacity:0; animation:upIn .7s .25s forwards; }
+    .hero-content .hero-description { opacity:0; animation:upIn .7s .4s forwards; }
+    .hero-content .hero-actions     { opacity:0; animation:upIn .7s .55s forwards; }
+    .hero-content .hero-stats       { opacity:0; animation:upIn .7s .7s forwards; }
+
+    /* Carte droite hero — conservée sombre pour le contraste */
+    .hero-card {
+      background: var(--ink-3); border:1px solid var(--border-dark-2);
+      border-radius:var(--r3); overflow:hidden;
+      box-shadow:0 32px 64px rgba(53,25,131,.15);
+      opacity:0; animation:scIn .9s .5s forwards;
+    }
+    .hc-head {
+      padding:20px 24px; border-bottom:1px solid var(--border-dark);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .hc-label { font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color: var(--txt-on-dark-muted); }
+    .hc-live  { display:flex; align-items:center; gap:6px; font-size:.72rem; color:#22c55e; font-weight:600; }
+    .hc-dot   { width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 7px rgba(34,197,94,.6); animation:blink 2s ease-in-out infinite; }
+
+    .hc-body { padding:20px 24px; display:flex; flex-direction:column; gap:9px; }
+    .hc-step {
+      display:flex; align-items:center; gap:12px;
+      padding:12px 14px; border-radius:var(--r2);
+      background: var(--ink-4); border:1px solid var(--border-dark);
+      transition:all var(--t) var(--ease); cursor:default;
+    }
+    .hc-step:hover { border-color:rgba(200,168,75,.28); background:rgba(200,168,75,.05); }
+    .hc-n {
+      width:26px; height:26px; border-radius:50%; flex-shrink:0;
+      background: var(--gold-bg); border:1px solid rgba(200,168,75,.3);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--f-title); font-size:.82rem; font-weight:700; color: var(--gold-2);
+    }
+    .hc-t { font-size:.85rem; color: var(--txt-on-dark-2); }
+
+    .hc-foot {
+      padding:18px 24px; border-top:1px solid var(--border-dark);
+      background: var(--gold-bg);
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .hc-fl { font-size:.75rem; color: var(--gold-3); font-weight:500; }
+    .hc-fv { font-family:var(--f-title); font-size:1rem; color: var(--gold-2); font-weight:700; }
+
+    .hero-bottom { position:absolute; bottom:-1px; left:0; right:0; height:70px; background: var(--bg-alt); clip-path:ellipse(55% 100% at 50% 100%); }
+
+    @keyframes upIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+    @keyframes scIn { from{opacity:0;transform:scale(.97)} to{opacity:1;transform:scale(1)} }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+    /* =====================================================================
+       SERVICES
+    ===================================================================== */
+    .services-section { background: var(--bg-alt); }
+
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+
+    .feature-card {
+      background: var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--r3); padding:38px 30px;
+      position:relative; overflow:hidden;
+      transition:all var(--t) var(--ease); cursor:default;
+    }
+    .feature-card::before {
+      content:''; position:absolute; top:-50px; right:-50px;
+      width:140px; height:140px; border-radius:50%;
+      background:radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      opacity:0; transition:opacity var(--t);
+    }
+    .feature-card:hover { border-color: var(--border-2); background: var(--bg-page); transform:translateY(-5px); box-shadow:0 20px 40px rgba(53,25,131,.08); }
+    .feature-card:hover::before { opacity:1; }
+
+    .feature-icon {
+      width:50px; height:50px; border-radius:var(--r2);
+      background: var(--bleu-bg); border:1px solid rgba(53,25,131,.15);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; margin-bottom:22px;
+      transition:all var(--t) var(--ease);
+    }
+    .feature-card:hover .feature-icon { background: var(--gold); border-color: var(--gold); transform:scale(1.08) rotate(-4deg); }
+    .feature-card h3 { color: var(--txt-h3); margin-bottom:9px; font-size:1rem; }
+    .feature-card p  { font-size:.87rem; color: var(--txt-body); line-height:1.7; }
+
+    /* =====================================================================
+       PARTENAIRES
+    ===================================================================== */
+    .partners-carousel {
+      background: var(--bg-page); padding:60px 0;
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    }
+    .partners-top { text-align:center; margin-bottom:36px; }
+    .partners-top h2 { font-family:var(--f-title); font-size:1.6rem; color: var(--txt-h2); margin-bottom:8px; }
+    .partners-top p  { font-size:.88rem; color: var(--txt-secondary); }
+
+    .partners-slider { position:relative; overflow:hidden; }
+    .partners-slider::before,
+    .partners-slider::after {
+      content:''; position:absolute; top:0; width:110px; height:100%; z-index:2; pointer-events:none;
+    }
+    .partners-slider::before { left:0;  background:linear-gradient(to right, var(--bg-page), transparent); }
+    .partners-slider::after  { right:0; background:linear-gradient(to left,  var(--bg-page), transparent); }
+
+    .partners-track {
+      display:flex; align-items:center; gap:64px;
+      width:max-content; animation:scroll 30s linear infinite;
+    }
+    .partners-track:hover { animation-play-state:paused; }
+
+    .partner-logo { flex-shrink:0; width:100px; display:flex; align-items:center; justify-content:center; }
+    .partner-logo img { max-height:36px; object-fit:contain; filter:grayscale(1) opacity(.25); transition:all var(--t); }
+    .partner-logo:hover img { filter:grayscale(0) opacity(1); transform:scale(1.1); }
+
+    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(calc(-50% - 32px))} }
+
+    /* =====================================================================
+       PROCESSUS
+    ===================================================================== */
+    .process-section { background: var(--bg-alt); }
+
+    .process-steps {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+      position:relative; margin-top:60px;
+    }
+    .process-steps::before {
+      content:''; position:absolute; top:26px;
+      left:calc(12.5% + 13px); right:calc(12.5% + 13px);
+      height:1px; background:linear-gradient(90deg, var(--gold-3), rgba(200,168,75,.1)); z-index:0;
+    }
+
+    .step { text-align:center; position:relative; z-index:1; }
+    .step-number {
+      width:52px; height:52px; border-radius:50%; margin:0 auto 22px;
+      background: var(--bg-card); border:1.5px solid var(--border-2);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--f-title); font-size:1.1rem; font-weight:700; color: var(--txt-h2);
+      position:relative; z-index:1; transition:all var(--t) var(--ease);
+    }
+    .step:hover .step-number { background: var(--gold); color: var(--txt-on-gold); border-color: var(--gold); box-shadow:0 8px 24px var(--gold-glow); transform:scale(1.1); }
+    .step h3 { font-size:.92rem; color: var(--txt-h3); margin-bottom:9px; }
+    .step p  { font-size:.83rem; color: var(--txt-body); line-height:1.65; }
+
+    /* =====================================================================
+       CALCULATEUR
+    ===================================================================== */
+    .calculator-section { background: var(--bg-page); }
+
+    .calc-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+
+    .calc-left h2 { margin-bottom:16px; }
+    .calc-left > p { font-size:.93rem; color: var(--txt-body); margin-bottom:36px; line-height:1.75; }
+
+    .cost-list { display:flex; flex-direction:column; }
+    .cost-list li {
+      display:flex; align-items:center; gap:12px;
+      padding:14px 0; border-bottom:1px solid var(--border);
+      font-size:.9rem; color: var(--txt-body);
+    }
+    .cost-list li:last-child { border-bottom:none; }
+    .cost-check {
+      width:20px; height:20px; border-radius:50%; flex-shrink:0;
+      background: var(--gold-bg); border:1px solid rgba(200,168,75,.25);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.6rem; color: var(--gold-3); font-weight:700;
+    }
+
+    .calculator-card {
+      background: var(--bg-card); border:1px solid var(--border-2);
+      border-radius:var(--r4); padding:38px;
+      position:relative; overflow:hidden;
+      box-shadow: 0 4px 24px rgba(53,25,131,.07);
+    }
+    .calculator-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--blue), var(--gold));
+    }
+
+    .calc-title { font-family:var(--f-title); font-size:.95rem; color: var(--txt-h2); margin-bottom:26px; display:flex; align-items:center; gap:8px; }
+
+    .input-group { margin-bottom:18px; }
+    .input-group label { display:block; font-size:.7rem; font-weight:700; color: var(--txt-muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.1em; }
+    .input-wrap { position:relative; }
+    .input-wrap input {
+      width:100%; padding:12px 44px 12px 14px;
+      border-radius:var(--r2); border:1px solid var(--border-2);
+      background: var(--bg-input); font-family:var(--f-body); font-size:.97rem;
+      color: var(--txt-body); outline:none; transition:border-color var(--t);
+    }
+    .input-wrap input:focus { border-color: var(--gold); box-shadow:0 0 0 3px var(--gold-bg); }
+    .input-wrap input::placeholder { color: var(--txt-disabled); }
+    .input-sfx { position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:.8rem; color: var(--txt-muted); pointer-events:none; }
+
+    .results {
+      background: var(--bg-alt); border:1px solid var(--border);
+      border-radius:var(--r3); padding:24px; margin-top:6px;
+    }
+    .result-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size:.86rem; }
+    .result-item:last-of-type { border-bottom:none; }
+    .result-item span:first-child { color: var(--txt-muted); }
+    .result-item span:last-child  { font-weight:600; color: var(--txt-h2); }
+
+    .total-block { margin-top:18px; padding-top:18px; border-top:1px solid var(--border-2); display:flex; justify-content:space-between; align-items:baseline; }
+    .total-lbl { font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; color: var(--txt-muted); }
+    .total-val { font-family:var(--f-title); font-size:1.7rem; color: var(--gold-3); }
+
+    .pay-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+    .pay-box { background: var(--bg-card); border:1px solid var(--border); border-radius:var(--r2); padding:14px; text-align:center; }
+    .pay-box h4 { font-size:.67rem; text-transform:uppercase; letter-spacing:.09em; color: var(--txt-muted); font-weight:600; margin-bottom:7px; }
+    .highlight { font-family:var(--f-title); font-size:1.05rem; color: var(--gold-3); }
+
+    /* =====================================================================
+       CONTACTS
+    ===================================================================== */
+    .contact-numbers { background: var(--bg-alt); }
+
+    .contact-intro { font-size:.93rem; color: var(--txt-body); margin-bottom:48px; max-width:560px; line-height:1.75; }
+
+    .numbers-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
+
+    .number-card {
+      background: var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--r3); padding:30px 24px;
+      display:flex; flex-direction:column; gap:9px;
+      position:relative; overflow:hidden;
+      transition:all var(--t) var(--ease);
+    }
+    .number-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; }
+    .number-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(53,25,131,.09); }
+
+    .n-icon { width:38px; height:38px; border-radius:var(--r1); display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+    .number-card h3 { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color: var(--txt-secondary); }
+    .phone-link,
+    .number-card p { font-family:var(--f-title); font-size:1.25rem; font-weight:700; color: var(--txt-h1); transition:color var(--t); }
+
+    .whatsapp-card::after { background:#25D366; }
+    .whatsapp-card .n-icon { background:rgba(37,211,102,.1); }
+    .whatsapp-card:hover .phone-link { color:#25D366; }
+    .whatsapp-card:hover { border-color:rgba(37,211,102,.25); }
+
+    .mtn-card::after { background:#ffcc00; }
+    .mtn-card .n-icon { background:rgba(255,204,0,.10); }
+    .mtn-card:hover { border-color:rgba(255,204,0,.35); }
+
+    .airtel-card::after { background: var(--red); }
+    .airtel-card .n-icon { background:rgba(204,16,32,.08); }
+    .airtel-card:hover { border-color:rgba(204,16,32,.2); }
+
+    /* =====================================================================
+       FAQ
+    ===================================================================== */
+    .faq-section { background: var(--bg-page); }
+
+    .faq-container { max-width:780px; margin:0 auto; }
+    .faq-category-wrapper { margin-bottom:42px; }
+
+    .faq-category-title {
+      font-family:var(--f-body); font-size:.68rem; font-weight:700;
+      letter-spacing:.15em; text-transform:uppercase; color: var(--gold-3);
+      margin-bottom:13px; display:flex; align-items:center; gap:11px;
+    }
+    .faq-category-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    .faq-item {
+      background: var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--r2); margin-bottom:7px; overflow:hidden;
+      transition:border-color var(--t);
+    }
+    .faq-item:hover { border-color: var(--border-2); }
+    .faq-item[open] { border-color: rgba(200,168,75,.3); box-shadow:0 4px 16px rgba(200,168,75,.06); }
+
+    .faq-question {
+      padding:17px 20px; cursor:pointer; font-weight:500; font-size:.92rem;
+      color: var(--txt-h3); display:flex; justify-content:space-between; align-items:center;
+      gap:14px; list-style:none; user-select:none; transition:color var(--t);
+    }
+    .faq-question::-webkit-details-marker { display:none; }
+    .faq-question:hover { color: var(--txt-h1); }
+
+    .faq-icon {
+      width:22px; height:22px; border-radius:50%; flex-shrink:0;
+      background: var(--bleu-bg); border:1px solid var(--border-2);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.9rem; color: var(--gold-3); line-height:1;
+      transition:all var(--t); pointer-events:none;
+    }
+    details[open] .faq-icon { background: var(--gold); color: var(--txt-on-gold); border-color: var(--gold); }
+
+    .faq-answer {
+      padding:14px 20px 17px; font-size:.87rem; color: var(--txt-body);
+      line-height:1.78; border-top:1px solid var(--border);
+    }
+
+    /* =====================================================================
+       FOOTER — fond sombre conservé (contraste intentionnel)
+    ===================================================================== */
+    .main-footer { background: var(--bleu-3); border-top:1px solid var(--border-dark); padding:72px 0 28px; }
+
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+
+    .footer-about h3 { font-family:var(--f-title); font-size:1.1rem; color: var(--txt-on-dark); margin-bottom:12px; }
+    .footer-about p  { font-size:.86rem; color: var(--txt-on-dark-muted); line-height:1.75; max-width:280px; margin-bottom:18px; }
+
+    .social-links { display:flex; gap:9px; }
+    .social-links a {
+      width:34px; height:34px; border-radius:var(--r1);
+      background: rgba(255,255,255,0.08); border:1px solid var(--border-dark-2);
+      display:flex; align-items:center; justify-content:center;
+      transition:all var(--t);
+    }
+    .social-links a:hover { background: var(--gold); border-color: var(--gold); transform:translateY(-2px); }
+    .social-links a img { width:15px; height:15px; filter:brightness(0) invert(1) opacity(.5); transition:filter var(--t); }
+    .social-links a:hover img { filter:brightness(0) opacity(1); }
+
+    .footer-contact h3,
+    .footer-nav h3 { font-family:var(--f-body); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color: var(--txt-on-dark-muted); margin-bottom:18px; }
+
+    .footer-contact ul,
+    .footer-nav ul { display:flex; flex-direction:column; gap:11px; }
+    .footer-contact li,
+    .footer-nav li { font-size:.86rem; color: var(--txt-on-dark-2); }
+
+    .footer-nav a { transition:color var(--t); color: var(--txt-on-dark-2); }
+    .footer-nav a:hover { color: var(--gold-2); }
+    .footer-contact a { color: var(--txt-on-dark-2); }
+    .footer-contact a:hover { color: var(--gold-2); }
+
+    .footer-bottom {
+      display:flex; justify-content:space-between; align-items:center;
+      padding-top:28px; border-top:1px solid var(--border-dark);
+      font-size:.78rem; color: var(--txt-on-dark-muted);
+    }
+    .footer-gold { color: var(--gold); font-weight:600; }
+
+    /* =====================================================================
+       RESPONSIVE
+    ===================================================================== */
+    @media(max-width:1000px){
+      .hero .container { grid-template-columns:1fr; }
+      .hero-card { display:none; }
+      .process-steps { grid-template-columns:repeat(2,1fr); }
+      .process-steps::before { display:none; }
+      .calc-layout { grid-template-columns:1fr; gap:44px; }
+      .footer-grid { grid-template-columns:1fr 1fr; gap:36px; }
+    }
+
+    @media(max-width:768px){
+      section { padding:80px 0; }
+      .main-nav {
+        position:fixed; top:0; right:-100%; width:80%; max-width:290px; height:100vh;
+        background: var(--bg-page); border-left:1px solid var(--border-2);
+        padding:84px 26px 36px; flex-direction:column;
+        transition:right var(--ts) var(--ease);
+      }
+      .main-nav.open { right:0; }
+      .main-nav ul { flex-direction:column; align-items:flex-start; gap:3px; }
+      .main-nav a  { font-size:.96rem; padding:11px 14px; width:100%; border-radius:var(--r2); }
+      .burger { display:flex; }
+      .hero { padding:110px 0 72px; }
+      .hero-stats { gap:22px; }
+      .process-steps { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr; gap:32px; }
+      .footer-bottom { flex-direction:column; gap:8px; text-align:center; }
+    }
+
+    @media(max-width:480px){
+      .hero-actions { flex-direction:column; align-items:flex-start; }
+      .pay-grid { grid-template-columns:1fr; }
+      .numbers-grid { grid-template-columns:1fr; }
+      .calculator-card { padding:26px 20px; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <header class="main-header">
-    <div class="container header-wrapper">
-      <div class="logo">
-        <a href="/" aria-label="Retour à l'accueil">
-          <img src="/images/Holy-shop_logo.jpg" alt="Holy Shop Logo" class="logo-img">
+<!-- =====================================================================
+     MODAL
+===================================================================== 
+<div class="newsletter-overlay" id="newsletterOverlay">
+  <div class="newsletter-modal">
+    <button class="close-modal" id="closeModal">&times;</button>
+    <div class="modal-left">
+      <h2>Commandez en France,<br><span>livré au Congo.</span></h2>
+      <p>Rejoignez des centaines de clients satisfaits à Brazzaville et Pointe-Noire.</p>
+    </div>
+    <div class="modal-right">
+      <h3>Accéder à Holy Shop</h3>
+      <p>Inscrivez-vous pour accéder à nos services et recevoir nos meilleures offres.</p>
+      <form class="modal-form" id="newsletterForm" action="">
+        <input type="email" placeholder="Votre adresse email" required>
+        <button type="submit" class="btn btn-gold">Accéder au site →</button>
+      </form>
+      <p class="spam-text">Nous ne spammons jamais.</p>
+    </div>
+  </div>
+</div>
+-->
 
+<!-- =====================================================================
+     HEADER
+===================================================================== -->
+<header class="main-header" id="header">
+  <div class="container header-wrapper">
+    <div class="logo">
+      <a href="/" aria-label="Accueil">
+        <img src="/Images/logo.png" alt="Holy Shop" class="logo-img">
+      </a>
+      <span><span class="holy">Holy</span>
+      <span class="shop">Shop</span>
+      <span class="congo">Congo</span></span>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav" class="main-nav">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#features">Services</a></li>
+        <li><a href="#process">Processus</a></li>
+        <li><a href="#calculator">Calculateur</a></li>
+        <li><a href="#contacts">Contact</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://wa.me/242064487395" class="nav-cta" target="_blank">Commander →</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- =====================================================================
+     HERO
+===================================================================== -->
+<section id="accueil" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="eyebrow">France → Congo-Brazzaville</div>
+      <h1>Achetez en France,<br><em>livré chez vous</em><br>au Congo.</h1>
+      <p class="hero-description">
+        Les plateformes internationales ne livrent pas jusqu'au Congo ? Pas de souci.
+        Holy Shop Congo achète pour vous, réceptionne en France et expédie chaque semaine à Brazzaville et Pointe-Noire.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/242064487395" class="btn btn-gold" target="_blank">
+          Commander sur WhatsApp →
         </a>
+        <a href="#process" class="btn btn-outline">Comment ça marche ?</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-lbl">Digital</div>
+        </div>
+        <div>
+          <div class="stat-val" data-count="10.5" data-suffix="€/kg">0€/kg</div>
+          <div class="stat-lbl">Expédition</div>
+        </div>
+        <div>
+          <div class="stat-val" data-count="15" data-suffix="%">0%</div>
+          <div class="stat-lbl">Commission</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hc-head">
+        <span class="hc-label">Commande en cours</span>
+        <span class="hc-live"><span class="hc-dot"></span>En ligne</span>
+      </div>
+      <div class="hc-body">
+        <div class="hc-step"><span class="hc-n">1</span><span class="hc-t">Vous nous envoyez le lien ou la photo.</span></div>
+        <div class="hc-step"><span class="hc-n">2</span><span class="hc-t">On valide le prix ensemble.</span></div>
+        <div class="hc-step"><span class="hc-n">3</span><span class="hc-t">Vous payez 80 % pour confirmer.</span></div>
+        <div class="hc-step"><span class="hc-n">4</span><span class="hc-t">On achète et réceptionne en France</span></div>
+        <div class="hc-step"><span class="hc-n">5</span><span class="hc-t">On l'expédie au Congo, vous êtes livré.</span></div>
+      </div>
+      <div class="hc-foot">
+        <span class="hc-fl">Expéditions chaque samedi</span>
+        <span class="hc-fv">Lun – Sam</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom"></div>
+</section>
+
+<!-- =====================================================================
+     SERVICES
+===================================================================== -->
+<section id="features" class="services-section">
+  <div class="container">
+    <div class="section-header rv">
+      <div class="eyebrow">Ce qu'on fait pour vous</div>
+      <h2>Nos Services</h2>
+    </div>
+    <br>
+    <div class="features-grid">
+      <article class="feature-card rv d1">
+        <div class="feature-icon">📦</div>
+        <h3>Achat International</h3>
+        <p>Nous achetons vos articles sur tous les sites qui livrent en France — Amazon, Zara, Shein, Vinted, Fnac, boutiques locales et même les vendeurs sur les réseaux sociaux.</p>
+      </article>
+      <article class="feature-card rv d2">
+        <div class="feature-icon">✈️</div>
+        <h3>Expédition Aérienne</h3>
+        <p>Vos colis partent chaque samedi depuis la France par voie aérienne, directement vers Brazzaville et Pointe-Noire, en toute sécurité.</p>
+      </article>
+      <article class="feature-card rv d3">
+        <div class="feature-icon">🏠</div>
+        <h3>Livraison à Domicile</h3>
+        <p>Une fois arrivé au Congo, votre colis est livré directement à votre adresse. Tarif communiqué à l'avance selon votre quartier.</p>
+      </article>
+      <article class="feature-card rv d4">
+        <div class="feature-icon">💳</div>
+        <h3>Paiement Mobile</h3>
+        <p>Réglez via Mobile Money MTN ou Airtel Monnaie. Simple, rapide, sécurisé — sans besoin de carte bancaire internationale.</p>
+      </article>
+      <article class="feature-card rv d5">
+        <div class="feature-icon">📍</div>
+        <h3>Suivi Transparent</h3>
+        <p>Vous êtes informé à chaque étape : achat, réception, expédition, livraison. Aucune surprise, une communication claire et réactive.</p>
+      </article>
+      <article class="feature-card rv d1">
+        <div class="feature-icon">🔒</div>
+        <h3>Service Fiable</h3>
+        <p>Disponibles du lundi au samedi jusqu'à 19h. Chaque commande est suivie et confirmée. Votre satisfaction est notre priorité absolue.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PARTENAIRES
+===================================================================== -->
+<section class="partners-carousel">
+  <div class="container">
+    <div class="partners-top rv">
+      <h2>Commandez sur tous vos sites préférés</h2>
+      <p>Tout site qui livre en France — on s'en occupe.</p>
+    </div>
+  </div>
+  <div class="partners-slider">
+    <div class="partners-track" id="partnersTrack">
+      <div class="partner-logo"><img src="/Images/Logos/Amazon-Logo-768x432.png" alt="Amazon"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Dove-logo-768x432.png" alt="Dove"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Nike-logo-768x432.png" alt="Nike"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Fnac-logo-640x660.png" alt="Fnac"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Zara-logо-768x432.png" alt="Zara"></div>
+      <div class="partner-logo"><img src="/Images/Logos/The-Meaning-of-Temus-Logo-The-Team-Up-Price-Down-Shopping-App-1.png" alt="Temu"></div>
+            <div class="partner-logo"><img src="/Images/Logos/Coach.jpg" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Adidas-Logo-tumb-140x88.png" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/AliExpress-Logo-768x432.png" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Dior-Logo-tumb.png" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Puma-Logo-tumb-140x88.png" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/NYX-logo-768x432.png" alt="Temu"></div>
+      <div class="partner-logo"><img src="/Images/Logos/Shein-Logo-768x432.png" alt="Temu"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PROCESSUS
+===================================================================== -->
+<section id="process" class="process-section">
+  <div class="container">
+    <div class="section-header rv" style="text-align:center;margin-bottom:0;">
+      <div class="eyebrow" style="justify-content:center;">Simple en 4 étapes</div>
+      <h2>Notre Processus</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step rv d1">
+        <div class="step-number">1</div>
+        <h3>Commande</h3>
+        <p>Envoyez-nous le lien ou la photo du produit souhaité via WhatsApp.</p>
+      </div>
+      <div class="step rv d2">
+        <div class="step-number">2</div>
+        <h3>Achat</h3>
+        <p>On valide le prix, vous payez 80 % et on achète pour vous en France.</p>
+      </div>
+      <div class="step rv d3">
+        <div class="step-number">3</div>
+        <h3>Expédition</h3>
+        <p>Chaque samedi, vos colis partent par voie aérienne vers le Congo.</p>
+      </div>
+      <div class="step rv d4">
+        <div class="step-number">4</div>
+        <h3>Livraison</h3>
+        <p>Votre colis arrive et est livré directement à votre domicile.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     CALCULATEUR
+===================================================================== -->
+<section id="calculator" class="calculator-section">
+  <div class="container">
+    <div class="calc-layout">
+      <div class="calc-left rv">
+        <div class="eyebrow">Estimez votre commande</div>
+        <h2>Calculateur<br>de coût</h2>
+        <p>Entrez le prix et le poids de votre article pour obtenir une estimation complète incluant notre commission et les frais d'expédition.</p>
+        <ul class="cost-list">
+          <li><span class="cost-check">✓</span> Prix de l'article</li>
+          <li><span class="cost-check">✓</span> + 15 % de commission Holy Shop</li>
+          <li><span class="cost-check">✓</span> + 10,5 € / kg d'expédition (6 983 FCFA)</li>
+          <li><span class="cost-check">✓</span> + Livraison à domicile (selon quartier)</li>
+        </ul>
       </div>
 
-      <button class="burger" id="burger" aria-label="Ouvrir le menu de navigation" aria-expanded="false"
-        aria-controls="nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="calculator-card rv d2">
+        <div class="calc-title">🧮 Simulateur de prix</div>
+        <div class="input-group">
+          <label for="price">Prix du produit</label>
+          <div class="input-wrap">
+            <input type="number" id="price" placeholder="Ex : 50.00" step="0.01" min="0">
+            <span class="input-sfx">€</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="weight">Poids estimé</label>
+          <div class="input-wrap">
+            <input type="number" id="weight" placeholder="Ex : 1.2" step="0.1" min="0">
+            <span class="input-sfx">kg</span>
+          </div>
+        </div>
+        <div class="results">
+          <div class="result-item"><span>Prix d'achat</span><span id="buyPrice">0.00 €</span></div>
+          <div class="result-item"><span>Commission (15 %)</span><span id="commission">0.00 €</span></div>
+          <div class="result-item"><span>Frais d'expédition</span><span id="shipping">0.00 €</span></div>
+          <div class="result-item"><span>Total en €</span><span id="totalEUR">0.00 €</span></div>
+          <div class="total-block">
+            <span class="total-lbl">Total FCFA estimé</span>
+            <span class="total-val" id="totalFCFA">0 FCFA</span>
+          </div>
+          <div class="pay-grid">
+            <div class="pay-box">
+              <h4>Acompte (80 %)</h4>
+              <span class="highlight" id="accompte">0 FCFA</span>
+            </div>
+            <div class="pay-box">
+              <h4>Reste à payer (20 %)</h4>
+              <span id="reste" style="font-family:var(--f-title);font-size:1.05rem;color:var(--txt-h3);">0 FCFA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <nav id="nav" class="main-nav">
+<!-- =====================================================================
+     CONTACTS
+===================================================================== -->
+<section id="contacts" class="contact-numbers">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Nous joindre</div>
+      <h2>Contacts & Paiements</h2>
+      <p class="contact-intro">Utilisez le numéro WhatsApp pour passer vos commandes. Les numéros MTN et Airtel sont réservés exclusivement aux règlements.</p>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-card whatsapp-card rv d1">
+        <div class="n-icon">💬</div>
+        <h3>Commandes WhatsApp</h3>
+        <a href="https://wa.me/242064487395" class="phone-link">+242 06 448 73 95</a>
+      </div>
+      <div class="number-card mtn-card rv d2">
+        <div class="n-icon">💛</div>
+        <h3>MTN Money — Paiements uniquement</h3>
+        <p>+242 06 675 77 77</p>
+      </div>
+      <div class="number-card airtel-card rv d3">
+        <div class="n-icon">❤️</div>
+        <h3>Airtel Money — Paiements uniquement</h3>
+        <p>+242 05 315 77 77</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     FAQ
+===================================================================== -->
+<section id="faq" class="faq-section">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:56px;">
+      <div class="eyebrow" style="justify-content:center;">Tout ce que vous devez savoir</div>
+      <h2>Foire Aux Questions</h2>
+    </div>
+
+    <div class="faq-container">
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">🏢 À propos de Holy Shop</h3>
+        <details class="faq-item"><summary class="faq-question">Qu'est-ce que Holy Shop Congo ?<span class="faq-icon">+</span></summary><p class="faq-answer">Holy Shop est une entreprise 100 % digitale qui permet aux Congolais d'acheter n'importe quel produit disponible en France. Nous achetons les articles en votre nom, les réceptionnons dans notre entrepôt en France, puis les expédions chaque semaine vers Brazzaville et Pointe-Noire avec livraison à domicile possible.</p></details>
+        <details class="faq-item"><summary class="faq-question">Avez-vous un local physique ?<span class="faq-icon">+</span></summary><p class="faq-answer">Pas encore. Holy Shop est une jeune entreprise 100 % en ligne pour le moment. Un espace physique est prévu à moyen terme, mais notre priorité actuelle reste la qualité de service et la satisfaction client.</p></details>
+        <details class="faq-item"><summary class="faq-question">Quels sont les horaires du service client ?<span class="faq-icon">+</span></summary><p class="faq-answer">Nous sommes disponibles du lundi au samedi, le matin jusqu'à 19h. En dehors de ces horaires, laissez-nous un message et nous vous répondrons dès que possible.</p></details>
+      </div>
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">🛒 Commandes & Produits</h3>
+        <details class="faq-item"><summary class="faq-question">Sur quels sites pouvez-vous acheter ?<span class="faq-icon">+</span></summary><p class="faq-answer">Tous les sites qui livrent en France : Amazon, Vinted, Shein, AliExpress France, Cdiscount, Fnac, Zara, Leboncoin, boutiques locales, vendeurs sur réseaux sociaux… Envoyez simplement une photo ou une référence, on s'en occupe !</p></details>
+        <details class="faq-item"><summary class="faq-question">Y a-t-il des produits refusés ?<span class="faq-icon">+</span></summary><p class="faq-answer">Oui. Nous refusons : matières dangereuses et explosifs, alcool et substances illicites, armes et munitions. Pour tout doute, contactez-nous avant de commander.</p></details>
+        <details class="faq-item"><summary class="faq-question">Comment passer une commande ?<span class="faq-icon">+</span></summary><p class="faq-answer">1) Envoyez-nous le lien ou la photo de l'article. 2) On valide le prix ensemble. 3) Vous payez 80 % pour confirmer. 4) On achète et réceptionne en France. 5) Expédition le samedi suivant, puis livraison à domicile.</p></details>
+        <details class="faq-item"><summary class="faq-question">Y a-t-il un montant minimum ou maximum ?<span class="faq-icon">+</span></summary><p class="faq-answer">Non. Aucun montant minimum ni maximum. Toutes les commandes sont traitées de la même façon.</p></details>
+      </div>
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">💰 Tarifs & Paiement</h3>
+        <details class="faq-item"><summary class="faq-question">Combien coûte le service ?<span class="faq-icon">+</span></summary><p class="faq-answer">Prix de l'article + 15 % de commission + 10,5 € / kg de transport (≈ 6 983 FCFA / kg, taux : 1 € = 665 FCFA) + livraison à domicile selon votre quartier.</p></details>
+        <details class="faq-item"><summary class="faq-question">Comment se passe le paiement ?<span class="faq-icon">+</span></summary><p class="faq-answer">80 % avant l'achat pour confirmer la commande, puis 20 % restants avant le samedi d'expédition. Les frais de transport sont réglés séparément une fois le colis pesé.</p></details>
+        <details class="faq-item"><summary class="faq-question">Que se passe-t-il si je paie en retard ?<span class="faq-icon">+</span></summary><p class="faq-answer">Si les 20 % ne sont pas payés avant le samedi : colis non expédié + 5 % de frais de retard, puis +5 % chaque semaine. Pour les frais de transport : 10 % immédiats, +5 % chaque samedi. Délais : avant mercredi pour Brazzaville, avant jeudi pour Pointe-Noire.</p></details>
+      </div>
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">🚚 Expédition & Délais</h3>
+        <details class="faq-item"><summary class="faq-question">Quand les colis sont-ils expédiés ?<span class="faq-icon">+</span></summary><p class="faq-answer">Les expéditions ont lieu chaque samedi depuis la France. Votre colis sera inclus dans le prochain envoi hebdomadaire après réception et validation.</p></details>
+        <details class="faq-item"><summary class="faq-question">Livrez-vous à Brazzaville et Pointe-Noire ?<span class="faq-icon">+</span></summary><p class="faq-answer">Oui, dans les deux villes. La livraison à domicile est disponible. Le tarif dépend de votre quartier et vous sera communiqué à l'avance. Paiement en mains propres au livreur.</p></details>
+        <details class="faq-item"><summary class="faq-question">Puis-je suivre mon colis ?<span class="faq-icon">+</span></summary><p class="faq-answer">Oui. Nous vous informons à chaque étape : achat confirmé → réception en France → expédition le samedi → livraison. Notre équipe est réactive tout au long du processus.</p></details>
+      </div>
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">🔄 Retours & Réclamations</h3>
+        <details class="faq-item"><summary class="faq-question">Puis-je annuler ma commande ?<span class="faq-icon">+</span></summary><p class="faq-answer">Une annulation est possible tant que l'achat n'a pas encore été effectué en France. Une fois acheté, cela dépend de la politique du vendeur. Contactez-nous le plus tôt possible.</p></details>
+        <details class="faq-item"><summary class="faq-question">Que faire si l'article ne correspond pas ?<span class="faq-icon">+</span></summary><p class="faq-answer">Nous vérifions les articles à leur réception en France. En cas de problème (taille, couleur, article manquant), nous vous en informons avant expédition pour trouver une solution ensemble.</p></details>
+      </div>
+
+      <div class="faq-category-wrapper rv">
+        <h3 class="faq-category-title">📞 Contact & Communauté</h3>
+        <details class="faq-item"><summary class="faq-question">Comment contacter Holy Shop ?<span class="faq-icon">+</span></summary><p class="faq-answer">Via WhatsApp : <a href="https://wa.me/242064487395" style="color:var(--gold-3)">+242 06 448 73 95</a> ou rejoignez notre groupe : <a href="https://chat.whatsapp.com/IVBPmLhcBUB8SfVXzWbhCK" style="color:var(--gold-3)">chat.whatsapp.com/IVBPmLhcBUB8SfVXzWbhCK</a>. Disponibles lundi–samedi jusqu'à 19h.</p></details>
+        <details class="faq-item"><summary class="faq-question">Y a-t-il une communauté Holy Shop ?<span class="faq-icon">+</span></summary><p class="faq-answer">Oui ! Rejoignez notre groupe WhatsApp pour ne manquer aucune arrivée, exclusivité ou promotion : <a href="https://chat.whatsapp.com/IVBPmLhcBUB8SfVXzWbhCK" style="color:var(--gold-3)">Rejoindre le groupe →</a></p></details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     FOOTER
+===================================================================== -->
+<footer class="main-footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <h3>Holy Shop Congo</h3>
+        <p>Votre partenaire de confiance pour l'achat et l'expédition de produits depuis la France vers le Congo-Brazzaville.</p>
+        <nav class="social-links">
+          <a href="https://www.instagram.com/holy.shop.congo?igsh=MWtoYmhwYTJ6NWVzcQ%3D%3D&utm_source=qr" aria-label="Instagram"><img src="/Images/Logos/Instagram-Logo-768x432.png" alt=""></a>
+          <a href="https://www.tiktok.com/@holy.shop.congo" aria-label="TikTok"><img src="/Images/Logos/Tiktok_Logo-640x400.png" alt=""></a>
+          <a href="https://chat.whatsapp.com/IVBPmLhcBUB8SfVXzWbhCK?fbclid=PAZXh0bgNhZW0CMTEAAaf-poWpQUAidpZWc_Wk4-htGtArwnmTHiKM0OBiEQCDptg7v3uhR_2n9ddVlw_aem_fiZ6FDdlLlSMd0JW3YdXvQ" aria-label="WhatsApp"><img src="/Images/Logos/Logo-WhatsApp.png" alt=""></a>
+        </nav>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact</h3>
         <ul>
-          <li><a href="#accueil">Accueil</a></li>
+          <li>Email : <a href="mailto:holyshopcongo@gmail.com">holyshopcongo@gmail.com</a></li>
+          <li>WhatsApp : +242 06 448 73 95</li>
+          <li>Lun–Sam</li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h3>Navigation</h3>
+        <ul>
           <li><a href="#features">Services</a></li>
-          <li><a href="#calculator">Calculateur</a></li>
           <li><a href="#process">Processus</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#calculator">Calculateur</a></li>
+          <li><a href="#contacts">Contacts</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="accueil" class="hero">
-      <div class="container hero-content">
-        <h1>Les plateformes internationales ne livrent pas jusqu’en République du Congo ?</h1>
-        <p class="hero-description">
-          Pas de souci ! Grâce à notre service d’achat et d’expédition depuis la France, nous commandons pour vous sur
-          vos sites préférés et faisons acheminer vos colis en toute sécurité jusqu’à votre adresse au
-          Congo-Brazzaville.
-        </p>
-        <h2 class="hero-subtitle">Simple, rapide et fiable — profitez enfin du shopping mondial sans frontières !</h2>
-      </div>
-    </section>
-    <div class="newsletter-overlay" id="newsletterOverlay">
-      <div class="newsletter-modal">
-        <button class="close-modal" id="closeModal">&times;</button>
-        <div class="modal-image">
-          <img src="/images/Holy-shop_logo.jpg" alt="Holy Shop Congo">
-        </div>
-        <div class="modal-content">
-          <span class="badge">Exclusif</span>
-          <h2>Rejoignez Holy Shop Congo</h2>
-          <p>Inscrivez-vous pour accéder à nos services et recevoir nos meilleures offres de livraison vers Brazzaville
-            et Pointe-Noire.</p>
-
-          <form class="modal-form" id="newsletterForm">
-            <input type="email" placeholder="Votre adresse email" required>
-            <button type="submit">Accéder au site</button>
-          </form>
-          <p class="spam-text">Nous ne spammons jamais.</p>
-        </div>
       </div>
     </div>
-
-    <section id="features" class="services-section">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Nos Services</h2>
-        </header>
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">📦</div>
-            <h3>Achat International</h3>
-            <p>Nous achetons vos produits sur tous les sites de votre choix qui effectuent des livraisons en France.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">🚚</div>
-            <h3>Expédition Rapide</h3>
-            <p>Expédition par voie aérienne de vos commandes directement au Congo : à Brazzaville et à Pointe-Noire.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">💰</div>
-            <h3>Paiement Facile</h3>
-            <p>Nous acceptons les paiements par mobile money (MTN & Airtel Congo).</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="partners-carousel">
-      <div class="container">
-        <h2 class="section-title">Où commander ?</h2>
-        <p class="section-subtitle">Vous pouvez commander sur tous les sites qui livrent en France.</p>
-
-        <div class="partners-slider">
-          <div class="partners-track" id="partnersTrack">
-            <div class="partner-logo"><img src="https://logodownload.org/wp-content/uploads/2021/06/shein-logo-0.png"
-                alt="Shein"></div>
-            <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-                alt="Amazon"></div>
-            <div class="partner-logo"><img src="https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo.png"
-                alt="Nike"></div>
-            <div class="partner-logo"><img
-                src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a6/Temu_logo.svg/768px-Temu_logo.svg.png"
-                alt="Temu"></div>
-            <div class="partner-logo"><img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Fnac_Logo.svg/1163px-Fnac_Logo.svg.png"
-                alt="Fnac"></div>
-            <div class="partner-logo"><img
-                src="https://1000logos.net/wp-content/uploads/2022/08/Zara-log%D0%BE-768x432.png" alt="Zara"></div>
-            <div class="partner-logo"><img src="https://logodownload.org/wp-content/uploads/2021/06/shein-logo-0.png"
-                alt="Shein"></div>
-            <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-                alt="Amazon"></div>
-            <div class="partner-logo"><img src="https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo.png"
-                alt="Nike"></div>
-            <div class="partner-logo"><img
-                src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a6/Temu_logo.svg/768px-Temu_logo.svg.png"
-                alt="Temu"></div>
-            <div class="partner-logo"><img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Fnac_Logo.svg/1163px-Fnac_Logo.svg.png"
-                alt="Fnac"></div>
-            <div class="partner-logo"><img
-                src="https://1000logos.net/wp-content/uploads/2022/08/Zara-log%D0%BE-768x432.png" alt="Zara"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="process-section">
-      <div class="container">
-        <h2 class="section-title">Notre Processus</h2>
-        <div class="process-steps">
-          <div class="step">
-            <span class="step-number">1</span>
-            <h3>Commande</h3>
-            <p>Envoyez-nous le lien de votre produit ou la référence de votre commande.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">2</span>
-            <h3>Achat</h3>
-            <p>Nous achetons le produit à votre place sur la plateforme d'origine (Amazon, Fnac, etc...).</p>
-          </div>
-          <div class="step">
-            <span class="step-number">3</span>
-            <h3>Expédition</h3>
-            <p>Le produit est expédié au Congo-Brazzaville.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">4</span>
-            <h3>Livraison</h3>
-            <p>Une fois le produit arrivé, vous êtes contacté pour la livraison finale.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="calculator" class="calculator-section">
-      <div class="container">
-        <h2 class="section-title">Calculateur de Coût</h2>
-        <div class="calculator-grid">
-          <div class="calculator-info">
-            <h3>Le coût total comprend :</h3>
-            <ul class="cost-list">
-              <li>Prix de l’article</li>
-              <li>15 % de commission Holy Shop</li>
-              <li>Frais d’expédition : 10,5 € / kg (6 983 FCFA)</li>
-              <li>Livraison à domicile</li>
-            </ul>
-          </div>
-
-          <div class="calculator-card">
-            <div class="input-group">
-              <label for="price">Prix du produit (€)</label>
-              <input type="number" id="price" placeholder="Ex: 50.00" step="0.01" min="0">
-            </div>
-            <div class="input-group">
-              <label for="weight">Poids du produit (kg)</label>
-              <input type="number" id="weight" placeholder="Ex: 1.5" step="0.1" min="0">
-            </div>
-
-            <div class="results" id="results">
-              <div class="result-item"><span>Prix d'achat:</span> <span id="buyPrice">0.00 €</span></div>
-              <div class="result-item"><span>Commission (15%):</span> <span id="commission">0.00 €</span></div>
-              <div class="result-item"><span>Frais d'expédition:</span> <span id="shipping">0.00 €</span></div>
-              <div class="result-item total-eur"><span>Total en €:</span> <span id="totalEUR">0.00 €</span></div>
-              <div class="result-item total-xaf"><span>Total en FCFA:</span> <span id="totalFCFA">0 XAF</span></div>
-
-              <hr>
-
-              <div class="payment-breakdown">
-                <div class="deposit">
-                  <h4>Acompte (80%) :</h4>
-                  <span id="accompte" class="highlight">0 XAF</span>
-                </div>
-                <div class="balance">
-                  <h4>Reste à payer (20%) :</h4>
-                  <span id="reste">0 XAF</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacts" class="contact-numbers">
-      <div class="container">
-        <h2 class="section-title">Contacts & Paiements</h2>
-        <p class="contact-intro">Utilisez le numéro WhatsApp pour vos commandes et les autres numéros exclusivement pour
-          les règlements.</p>
-
-        <div class="numbers-grid">
-          <div class="number-card whatsapp-card">
-            <h3>Commandes WhatsApp</h3>
-            <a href="https://wa.me/242064487395" class="phone-link">+242 06 448 73 95</a>
-          </div>
-          <div class="number-card mtn-card">
-            <h3>MTN Money Uniquement</h3>
-            <p>+242 06 675 77 77</p>
-          </div>
-          <div class="number-card airtel-card">
-            <h3>Airtel Money Uniquement</h3>
-            <p>+242 05 315 77 77</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq-section">
-      <div class="container">
-        <h2 class="section-title">Foire Aux Questions</h2>
-
-        <div class="faq-container">
-          <div class="faq-category-wrapper">
-            <h3 class="faq-category-title">🛒 Commandes & Produits</h3>
-            <details class="faq-item">
-              <summary class="faq-question">Sur quels sites puis-je commander ?</summary>
-              <p class="faq-answer">Tu peux commander sur tous les sites français : Amazon, Vinted, Shein, Cdiscount,
-                Fnac, Zara, Leboncoin, etc.</p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="main-footer" id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <h3>Holy Shop Congo</h3>
-          <p>Votre partenaire de confiance pour l'achat et l'expédition de produits de la France vers le
-            Congo-Brazzaville.</p>
-          <nav class="social-links">
-            <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-                alt=""></a>
-            <a href="#" aria-label="TikTok"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png"
-                alt=""></a>
-            <a href="#" aria-label="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-                alt=""></a>
-          </nav>
-        </div>
-
-        <div class="footer-contact">
-          <h3>Contact Rapide</h3>
-          <ul>
-            <li>Email: <a href="mailto:contact@holyshop.com">contact@holyshop.com</a></li>
-            <li>WhatsApp: +242 06 448 7395</li>
-          </ul>
-        </div>
-
-        <div class="footer-nav">
-          <h3>Liens Rapides</h3>
-          <ul>
-            <li><a href="#features">Services</a></li>
-            <li><a href="#calculator">Calculateur</a></li>
-            <li><a href="#process">Processus</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Holy Shop. Tous droits réservés.</p>
-      </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span class="footer-gold">Holy Shop Congo</span>. Tous droits réservés.</p>
+      <p>France → Congo-Brazzaville 🇨🇬</p>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="script.js" defer></script>
-  <script src="partners-scroll.js" defer></script>
+<!-- =====================================================================
+     JAVASCRIPT
+===================================================================== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const overlay  = document.getElementById('newsletterOverlay');
+  const closeBtn = document.getElementById('closeModal');
+  const form     = document.getElementById('newsletterForm');
+  const hide = () => overlay?.classList.add('hidden');
+  closeBtn?.addEventListener('click', hide);
+  overlay?.addEventListener('click', e => { if(e.target===overlay) hide(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') hide(); });
+  form?.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    if(btn){ btn.textContent='Bienvenue ✓'; btn.style.background='linear-gradient(135deg,#6ee7b7,#22c55e)'; btn.style.color='#fff'; }
+    setTimeout(hide, 800);
+  });
+
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 50);
+  }, {passive:true});
+
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const closeMen = () => { nav?.classList.remove('open'); burger?.classList.remove('open'); document.body.style.overflow=''; };
+  burger?.addEventListener('click', e => {
+    e.stopPropagation();
+    const o = nav.classList.toggle('open');
+    burger.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMen));
+  document.addEventListener('click', e => { if(!nav?.contains(e.target) && !burger?.contains(e.target)) closeMen(); });
+
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); ro.unobserve(e.target); } });
+  }, { threshold:.1, rootMargin:'0px 0px -30px 0px' });
+  document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+  const so = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); so.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.step').forEach(s => { s.classList.add('rv'); so.observe(s); });
+
+  const pI = document.getElementById('price');
+  const wI = document.getElementById('weight');
+  const XAF = 665;
+  const els = {
+    buyPrice:   document.getElementById('buyPrice'),
+    commission: document.getElementById('commission'),
+    shipping:   document.getElementById('shipping'),
+    totalEUR:   document.getElementById('totalEUR'),
+    totalFCFA:  document.getElementById('totalFCFA'),
+    accompte:   document.getElementById('accompte'),
+    reste:      document.getElementById('reste'),
+  };
+
+  function anim(el, end, dur, fmt) {
+    if(!el) return;
+    if(el._r) cancelAnimationFrame(el._r);
+    let t0=null;
+    const step = ts => {
+      if(!t0) t0=ts;
+      const p = Math.min((ts-t0)/dur,1);
+      const e = 1-Math.pow(1-p,3);
+      el.textContent = fmt(e*end);
+      if(p<1) el._r = requestAnimationFrame(step);
+    };
+    el._r = requestAnimationFrame(step);
+  }
+
+  const fE = v => v.toFixed(2)+' €';
+  const fF = v => Math.round(v).toLocaleString('fr-FR')+' FCFA';
+
+  function calc() {
+    const p = Math.max(0, parseFloat(pI?.value)||0);
+    const w = Math.max(0, parseFloat(wI?.value)||0);
+    const com = p*.15, shp = w*10.5, tot = p+com+shp, totX = tot*XAF;
+    anim(els.buyPrice,   p,    320, fE);
+    anim(els.commission, com,  320, fE);
+    anim(els.shipping,   shp,  320, fE);
+    anim(els.totalEUR,   tot,  320, fE);
+    anim(els.totalFCFA,  totX, 400, fF);
+    anim(els.accompte,   totX*.8, 400, fF);
+    anim(els.reste,      totX*.2, 400, fF);
+  }
+
+  pI?.addEventListener('input', calc);
+  wI?.addEventListener('input', calc);
+
+  const track = document.getElementById('partnersTrack');
+  if(track) Array.from(track.children).forEach(c => track.appendChild(c.cloneNode(true)));
+
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      e.target.querySelectorAll('[data-count]').forEach(el => {
+        const v = parseFloat(el.dataset.count), s = el.dataset.suffix||'';
+        anim(el, v, 1200, n => (Number.isInteger(v)?Math.round(n):n.toFixed(1))+s);
+      });
+      statsObs.unobserve(e.target);
+    });
+  }, {threshold:.5});
+  const hs = document.querySelector('.hero-stats');
+  if(hs) statsObs.observe(hs);
+
+  document.querySelectorAll('.faq-item').forEach(d => {
+    d.addEventListener('toggle', () => {
+      const ic = d.querySelector('.faq-icon');
+      if(ic) ic.textContent = d.open ? '−' : '+';
+    });
+  });
+
+  const secs  = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.main-nav a[href^="#"]');
+  if(secs.length && links.length){
+    const no = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(s => no.observe(s));
+  }
+
+});
+</script>
 </body>
-
 </html>
