@@ -977,6 +977,139 @@ section { padding: 80px 0; }
 .step:nth-child(3) { transition-delay: .24s; }
 .step:nth-child(4) { transition-delay: .36s; }
 
+/* ── TÉMOIGNAGES ── */
+.testimonials-section { background: var(--bg); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.review-card {
+  background: var(--blanc);
+  border: 1px solid rgba(28,0,108,.08);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--t), box-shadow var(--t);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.review-stars {
+  color: #f59e0b;
+  font-size: .95rem;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+
+.review-text {
+  font-size: .93rem;
+  color: var(--txt);
+  line-height: 1.75;
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.review-text::before { content: '\201C'; }
+.review-text::after  { content: '\201D'; }
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(28,0,108,.07);
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(28,0,108,.10);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: .88rem;
+  color: var(--violet);
+  flex-shrink: 0;
+}
+
+.review-name {
+  display: block;
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--txt);
+}
+
+.review-city {
+  display: block;
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+/* Livraison banner */
+.livraison-banner {
+  background: var(--violet);
+  border-radius: var(--r-lg);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.livraison-city {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  color: var(--blanc);
+}
+
+.livraison-city svg { color: var(--rouge); flex-shrink: 0; }
+
+.livraison-city strong {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.livraison-city span {
+  font-size: .82rem;
+  color: rgba(255,255,255,.60);
+}
+
+.livraison-sep {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  color: var(--rouge);
+  line-height: 1;
+}
+
+/* FAQ category titles avec icones SVG */
+.faq-category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-category-title svg { flex-shrink: 0; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .main-nav {

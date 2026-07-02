@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── 5. CALCULATEUR ── */
   const priceInput  = document.getElementById('price');
   const weightInput = document.getElementById('weight');
-  const EUR_TO_XAF  = 665;
+  const EUR_TO_XAF     = 665;
+  const SHIPPING_FCFA  = 7000; // par kg
 
   const els = {
     buyPrice:   document.getElementById('buyPrice'),
@@ -110,14 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!allExist) return;
     const price  = Math.max(0, parseFloat(priceInput?.value)  || 0);
     const weight = Math.max(0, parseFloat(weightInput?.value) || 0);
-    const commission = price * 0.15;
-    const shipping   = weight * 10.5;
-    const totalEUR   = price + commission + shipping;
-    const totalXAF   = totalEUR * EUR_TO_XAF;
+    const commission    = price * 0.15;
+    const shippingFCFA  = weight * SHIPPING_FCFA;
+    const totalEUR      = price + commission;
+    const totalXAF      = totalEUR * EUR_TO_XAF + shippingFCFA;
     const D = 380;
     animateValue(els.buyPrice,   0, price,          D, fmtEUR);
     animateValue(els.commission, 0, commission,     D, fmtEUR);
-    animateValue(els.shipping,   0, shipping,       D, fmtEUR);
+    animateValue(els.shipping,   0, shippingFCFA,   D, fmtXAF);
     animateValue(els.totalEUR,   0, totalEUR,       D, fmtEUR);
     animateValue(els.totalFCFA,  0, totalXAF,       D, fmtXAF);
     animateValue(els.accompte,   0, totalXAF * 0.8, D, fmtXAF);
