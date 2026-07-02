@@ -335,6 +335,7 @@ section { padding: 80px 0; }
   background: rgba(28,0,108,.08);
   border-radius: 14px;
   margin: 0 auto 18px;
+  color: var(--violet);
 }
 
 .feature-card h3 {
@@ -447,8 +448,8 @@ section { padding: 80px 0; }
 }
 
 .step:first-child .step-number {
-  background: var(--rouge);
-  box-shadow: 0 0 0 2px var(--rouge);
+  background: var(--violet);
+  box-shadow: 0 0 0 2px var(--violet);
 }
 
 .step:hover .step-number {
